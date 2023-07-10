@@ -7,7 +7,7 @@ pipeline {
         stage('Checkout'){
             agent any
             steps{
-                git credentialsId: 'GITHUB_CREDENTIEL' url: 'https://github.com/Akram6Trimech9/gt-health-off.git', branch: 'main'
+                git url: 'https://github.com/Akram6Trimech9/gt-health-off.git', branch: 'main'
             }
         }
         stage('init'){
