@@ -36,7 +36,6 @@ pipeline {
         }
         stage('Sonarqube quality gate') {
             agent any
-            = 
             when {
                 changeset "*.*"
                 beforeAgent true
