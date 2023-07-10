@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('DODKCER_HUB_CREDENTIEL')
+    }
+    stages {
+        stage('clone'){
+            steps{
+                git credentialsId: 'GITHUB_CREDENTIEL',
+                    branch: 'main',
+                    url: 'https://github.com/Akram6Trimech9/GT-CLIENT-PART.git'
+            }
+        }
+        stage('init'){
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('web Analysis ') {
+            when {
+                changeset "*.*"
+            }
+            steps {
+                dir('/'){
+                    nodejs(nodeJSInstallationName: 'nodejs'){
+                        sh 'npm install'
+                        script {
+                            def scannerHome = tool 'SonarQube'
+                            withSonarQubeEnv('sq1') {
+                                sh "${tool('SonarQube')}/bin/sonar-scanner -Dsonar.projectKey=/. -Dsonar.projectName=/."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Sonarqube quality gate') {
+            when {
+                changeset "*.*"
+            }
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Build client') {
+            when {
+                changeset "**.*"
+            }
+            steps {
+                dir('auth-api and Analysis'){
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/client-front .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/client-front '
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/client-front '
+                    sh 'docker logout'
+                }
+            }
+        }
+    }
+}

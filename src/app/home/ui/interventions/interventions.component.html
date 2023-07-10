@@ -1,0 +1,26 @@
+<div class="our-departments" style="background-image:url('assets/images/departments-bg.jpg') ;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="our-departments-wrap">
+                    <h2> Nos interventions</h2>
+                    <div class="row" *ngIf="interventions &&  interventions.length > 0">
+                        <div class="col-12 col-md-4" *ngFor="let item of interventions; let i = index;">
+                            <div class="our-departments-cont">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <i style="color: white; padding: 10px; font-size: 30px;" class="{{item.icon}}" alt=""></i>
+                                    <h3>{{item.title}}</h3>
+                                </header>
+                                <div class="entry-content">
+                                    <ng-container *ngIf="item.description">
+                                        <p *ngFor="let paragraph of splitDescription(item.description); let j = index;">{{paragraph}}</p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

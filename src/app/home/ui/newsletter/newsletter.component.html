@@ -1,0 +1,18 @@
+<div class="subscribe-banner" style="background: url('assets/images/subscribe-bg.png');">
+    <div class="container">
+      <div class="row">
+        <div *ngIf="!subscribed"  class="col-12 col-lg-8 offset-lg-2">
+          <h2>Subscribe to our newsletter</h2>
+          <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+            <input type="email" formControlName="email" placeholder="E-mail address">
+            <input class="button gradient-bg" type="submit" value="Subscribe">
+          </form>
+       
+        </div>
+        <div class="col-12 col-lg-8 offset-lg-2"  *ngIf="subscribed">
+            <h3 style="color:  white; word-spacing: 5px ;">Thank you for subscribing to us! We will send you any updates.</h3>
+           </div>
+      </div>
+    </div>
+  </div>
+  

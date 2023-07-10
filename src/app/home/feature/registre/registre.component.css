@@ -1,0 +1,12 @@
+a{
+    text-decoration: none !important ; 
+}.btn{
+    color: blanchedalmond;
+}
+.back-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 100%;
+    height: auto;
+  }

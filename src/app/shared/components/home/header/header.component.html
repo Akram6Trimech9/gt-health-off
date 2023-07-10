@@ -1,0 +1,63 @@
+   <header>
+        <div class="header-top" *ngIf="info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 left-item">
+                        <ul>
+                            <li><i class="fa fa-envelope-square"></i>{{info.agency_email}}</li>
+                            <li><i class="fa fa-phone-square"></i> {{info.agency_number}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block right-item">
+                        <ul>
+                            <li> <a><i class="fa fa-google"></i></a></li>
+                            <li><a href="{{info.agency_facebook_link}}"><i class="fa fa-linkedin"></i></a></li>
+                            <li> <a href="{{info.agency_linked_in_link}}"> <i class="fa fa-facebook-f"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <div id="nav-head" class="header-nav">
+            <div class="container">
+                <div class="row" >
+                    
+                    <div class="col-lg-2 col-md-3 no-padding col-sm-12 nav-img">
+                        <img class="d-block main-div" src="assets/images/logo.png" alt="logo">                  
+                             <a  (click)="responsive()" ><i class="fas d-block d-md-none small-menu fa fa-bars"></i></a>
+                    </div>
+                    <div class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                        <ul>
+                            <li><a [routerLink]="['']" routerLinkActive="link--active" [routerLinkActiveOptions]="{exact: true}" >Accueil</a></li>
+                            <li><a [routerLink]="['about']"  routerLinkActive="link--active" [routerLinkActiveOptions]="{exact: true}">À propos </a></li>
+                            <li><a [routerLink]="['services']" routerLinkActive="link--active" [routerLinkActiveOptions]="{exact: true}">Services</a></li>
+                            <li><a [routerLink]="['/blog']" routerLinkActive="link--active" [routerLinkActiveOptions]="{exact: true}">Blog</a></li>  
+                             <li><a [routerLink]="['/contact']"routerLinkActive="link--active" [routerLinkActiveOptions]="{exact: true}">Contactez-nous</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 d-none d-lg-block appoint">
+                        <button [routerLink]="['/login']" routerLinkActive="router-link-active"  class="button gradient-bg">Compte</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-sidenav-container  *ngIf="isResponsiveNavOpen">
+      <mat-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-nav-list>
+        <a  class="responsive-nav-bar " mat-list-item routerLink="/" routerLinkActive="active">Home</a>
+        <a  class="responsive-nav-bar" mat-list-item routerLink="/about" routerLinkActive="active">About</a>
+        <a  class="responsive-nav-bar" mat-list-item routerLink="/services" routerLinkActive="active">Services</a>
+        <a  class="responsive-nav-bar" mat-list-item routerLink="/blog" routerLinkActive="active">Blog</a>
+        <a  class="responsive-nav-bar" mat-list-item routerLink="/contact" routerLinkActive="active">Contact</a>
+      </mat-nav-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+    </header>
+    
+    
+     
+   

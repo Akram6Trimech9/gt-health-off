@@ -1,0 +1,117 @@
+
+.homepage-boxes {
+    padding: 110px 0;
+}
+
+.opening-hours.ng-enter {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  
+  .opening-hours.ng-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+.opening-hours,
+.emergency-box,
+.appointment-box,
+.contact-info {
+    position: relative;
+    padding: 32px;
+    border-radius: 20px;
+    border: 2px solid #dde4ea;
+}
+
+.opening-hours:hover {
+    border-color: #18a3eb !important;
+}
+
+.opening-hours h2,
+.emergency-box h2,
+.appointment-box h2,
+.contact-info h2 {
+    position: absolute;
+    top: -24px;
+    left: -2px;
+    height: 48px;
+    padding-right: 16px;
+    background: #fff;
+
+    font-size: 24px;
+    font-weight: 600;
+    color: #404040;
+}
+
+.opening-hours ul {
+    list-style: none;
+}
+
+.opening-hours ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #828282;
+}
+
+.opening-hours ul li span {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+ 
+.emergency-box {
+    padding: 16px;
+}
+.emergency-box:hover{
+    border-color: #18a3eb !important;
+}
+
+.emergency-box p {
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #828282;
+}
+
+.emergency-box .call-btn {
+    max-width: 220px;
+    margin: 24px auto !important;
+}
+
+/*
+# Make an Appointment
+--------------------------------*/
+.appointment-box {
+    padding: 16px; 
+}
+.appointment-box:hover {
+    border-color: #18a3eb !important;
+}
+.appointment-box form {
+    margin-top: 24px;
+}
+
+.appointment-box form select,
+.appointment-box form input[type="text"],
+.appointment-box form input[type="number"] {
+    display: block;
+    width: calc(50% - 5px);
+    padding: 12px 16px ;
+    margin-bottom: 10px;
+    border: 0;
+
+    font-size: 12px;
+    font-style: italic;
+    color: #828282;
+    background: #f0f4f8;
+    outline: none;
+}
+
+.appointment-box form input[type="submit"] {
+    margin-top: 16px;
+}
