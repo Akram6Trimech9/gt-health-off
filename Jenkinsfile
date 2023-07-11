@@ -10,6 +10,12 @@ pipeline {
                 git url: 'https://github.com/Akram6Trimech9/gt-health-off.git', branch: 'main'
             }
         }
+        stage('testddd'){
+            agent any
+            steps{
+               sh 'ls'
+            }
+        }
         stage('init'){
             agent any
             steps{
@@ -28,14 +34,14 @@ pipeline {
                              script {
                                 def scannerHome = tool 'SonarQube';
                                 withSonarQubeEnv('sonar') {
-                                sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
+                                sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=app -Dsonar.projectName=app"
                                 }
                              }
                     }
              }
         }
         stage('Sonarqube quality gate') {
-            agent any
+            agent any 
             when {
                 changeset "*.*"
                 beforeAgent true
