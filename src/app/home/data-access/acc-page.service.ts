@@ -58,4 +58,5 @@ export class AccPageService {
   getInfo() :Observable<AgencyInfo[]>{
      return this.http.get<AgencyInfo[]>(`${environment.url}${RouterApi.agence_info}`)
   }
+ 
 }

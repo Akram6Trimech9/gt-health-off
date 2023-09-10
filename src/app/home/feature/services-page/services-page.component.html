@@ -7,13 +7,13 @@
                 <div class="col-12">
                     <h2>Only Top Quality Services</h2>
 
-                    <div class="row">
+                    <div class="row" *ngIf="topqualities">
                         <div class="col-12 col-md-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem ma ximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, malesuada viverra accumsan leo.</p>
+                            <p>{{topqualities.Qualityone}}</p>
                         </div>
 
                         <div class="col-12 col-md-6">
-                            <p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo.</p>
+                            <p>{{topqualities.Qualitytwo}}</p>
                         </div>
                     </div>
 

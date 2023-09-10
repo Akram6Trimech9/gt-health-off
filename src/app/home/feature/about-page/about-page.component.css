@@ -1,41 +1,40 @@
+/* 
+==========================
+Global Styles
+==========================
+*/
+
 .breadcrumbs {
     font-size: 14px;
-     font-weight: 500;
-     color: #828282;
- }
- 
- .breadcrumbs ul {
-     list-style: none;
- }
- 
- .breadcrumbs li {
-     position: relative;
-     padding-right: 10px;
-     margin-right: 5px;
-     color: #18a3eb;
- }
- 
- .breadcrumbs li::after {
-     content: "/";
-     position: absolute;
-     top: 0;
-     right: 0;
-     width: 6px;
-     height: 100%;
-     color: #828282;
- }
- 
- .breadcrumbs li:nth-last-of-type(1)::after {
-     display: none;
-                }
- 
- .breadcrumbs a {
-     color: #828282;
- }
- 
- 
-.elements-page .elements-container {
-    margin-top: 54px;
+    font-weight: 500;
+    color: #828282;
+}
+
+.breadcrumbs ul {
+    list-style: none;
+}
+
+.breadcrumbs li {
+    position: relative;
+    padding-right: 10px;
+    margin-right: 5px;
+    color: #18a3eb;
+}
+
+.breadcrumbs li::after {
+    content: "/";
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #828282;
+}
+
+.breadcrumbs li:nth-last-of-type(1)::after {
+    display: none;
+}
+
+.breadcrumbs a {
+    color: #828282;
 }
 
 .header-img {
@@ -45,13 +44,61 @@
     max-width: 65%;
     height: auto;
 }
+
 .site-header {
     position: relative;
     padding: 220px 0 140px;
     background-color: #f0f4f8;
-}.site-header h1 {
+}
+
+.site-header h1 {
     margin-bottom: 0;
     font-size: 60px;
     font-weight: 600;
     color: #404040;
+}
+
+.elements-page .elements-container {
+    margin-top: 54px;
+}
+
+/* 
+==========================
+Accordion Styles
+==========================
+*/
+
+.accordion-wrap {
+    position: relative;
+}
+
+.accordion-wrap .entry-content {
+    display: none;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 2;
+    color: #828282;
+}
+
+.accordion-wrap .entry-title {
+    padding: 12px 38px;
+    margin-bottom: 15px;
+    background: linear-gradient(270deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* The gradient background was repeated with different methods, just use the w3c standard for broad compatibility */
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+}
+
+.accordion-wrap .entry-title .arrow-r::before,
+.accordion-wrap .entry-title .arrow-d::before {
+    content: "+";
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.accordion-wrap .entry-title .arrow-d::before {
+    content: "-";
 }

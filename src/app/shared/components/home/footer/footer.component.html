@@ -6,7 +6,11 @@
                     <div class="foot-about">
                         <h2><a ><img width="230px" src="assets/images/logo.png" alt=""></a></h2>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
+                        <p>GT HEALTH: est une structure au service des malades complètement indépendante des institutions de santé.
+                            Cette indépendance assure sa force, son
+                            positionnement sa spécificité.
+                            L'originalité de GT HEALTH est de proposer un couplage entre médecine et management.
+                            Le rôle du médecin est d'exercer son métier selon les règles de L'art ; celui du manager est de restituer ce travail dans le cadre d'une problématique plus large du patient en améliorant sa prise en charge humaine et en proposant le meilleur service au meilleur prix..</p>
                     </div>
                 </div>
 
@@ -14,10 +18,10 @@
                     <div class="foot-contact">
                         <h2>Contact</h2>
 
-                        <ul class="p-0 m-0">
-                            <li><span>Addtress:</span>Mitlton Str. 26-27 London UK</li>
-                            <li><span>Phone:</span>+53 345 7953 32453</li>
-                            <li><span>Email:</span>yourmail@gmail.com</li>
+                        <ul class="p-0 m-0" *ngIf="info">
+                            <li><span>Addtress:</span>{{info.contact_info}}</li>
+                            <li><span>Phone:</span>{{info.agency_number}}</li>
+                            <li><span>Email:</span>{{info.agency_email}}</li>
                         </ul>
                     </div>
                 </div><!-- .col -->
@@ -27,12 +31,12 @@
                         <h2>Usefull Links</h2>
 
                         <ul class="p-0 m-0">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="#">Departments</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="news.html">FAQ</a></li>
-                            <li><a href="services.html">Testimonials</a></li>
+                            <li><a [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a></li>
+                            <li><a [routerLink]="['/about']" routerLinkActive="router-link-active" >About us</a></li>
+                            <li><a [routerLink]="['/services']" routerLinkActive="router-link-active"  >Departments</a></li>
+                            <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active"  >Contact</a></li>
+                            <li><a [routerLink]="['/about']" routerLinkActive="router-link-active"  >FAQ</a></li>
+                            <li><a [routerLink]="['/']" routerLinkActive="router-link-active"  >Testimonials</a></li>
                         </ul>
                     </div><!-- .foot-links -->
                 </div><!-- .col -->

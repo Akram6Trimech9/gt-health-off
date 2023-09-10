@@ -1,134 +1,188 @@
 import { Component } from '@angular/core';
+import { ChatService } from 'src/app/home/data-access/chat.service';
 
 @Component({
   selector: 'app-chat-icon',
   template: `
-    <div class="message-icon" (click)="openChat()">
-      <i class="fa fa-comments"></i>
-    </div>
-    <div class="chat-window" *ngIf="chatOpen">
-      <h2>Chat Bot</h2>
-      <div class="chat-messages">
-      <div  *ngFor="let message of messages">
-      <div class="message received">
-        {{ message }}
-      </div>
-    </div>
-      </div>
-      <input type="text" [(ngModel)]="currentMessage" placeholder="Type your message...">
-      <button (click)="sendMessage()">Send</button>
-    </div>
+  <div class="chat-icon" (click)="openChat()">
+  <img src="assets/images/logo1.png" alt="Chat Logo" class="chat-logo"> 
+  <mat-icon>chat</mat-icon>
+</div>
+
+<div *ngIf="chatOpen" class="chat-container">
+  <div class="header">
+    <img src="assets/images/logo1.png" alt="Chat Logo" class="chat-header-logo">
+    <h2>GT HEALTH CHAT</h2>
+    <mat-icon class="close-icon" (click)="chatOpen = false">close</mat-icon>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="chat-messages">
+  <div *ngFor="let message of messages" class="message" [ngClass]="{'user': message.sender === 'User', 'bot': message.sender === 'Bot'}">
+  {{ message.content }}
+</div>
+
+  </div>
+  <div class="chat-input-section">
+    <mat-form-field class="chat-input">
+      <input matInput [(ngModel)]="currentMessage" placeholder="Type your message...">
+    </mat-form-field>
+    <button mat-icon-button (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>
+
   `,
   styles: [`
-  .message-icon {
+
+  .chat-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #0084ff; /* Facebook blue */
+    background-color: #18a3eb;
     color: white;
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    text-align: center;
-    line-height: 60px;
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+   }
+  
+  .chat-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+  }
+   
+  .chat-header-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
   }
   
-  .chat-window {
+  .chat-container {
     position: fixed;
-    bottom: 80px;
-    right: 20px;
-    background-color: white;
-    color: black;
-    border-radius: 10px;
-    width: 320px; 
-    height: 500px;  
-    overflow-y: scroll;
-    padding: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; /* use Facebook's font */
-  }
-  
-  .chat-window h2 {
-    margin-top:10px;
-    font-size: 16px; 
-    font-weight: bold;
-    padding: 10px;
-    background-color: #f5f6f7; 
-    border-radius: 10px 10px 0 0;  
+    bottom: 40px;
+    right: 40px;
+    width: 320px;
+    background-color: #ffffff;
+    height: 600px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   }
   
   .chat-messages {
-    height: 350px ;
+    padding:30px 0 ;
+    overflow-y: scroll;
+    
+    max-height: 500px;
     margin-bottom: 10px;
   }
   
   .message {
-    background-color: #f5f6f7; 
-    color: black;
-    border-radius: 20px; 
-    padding: 10px 15px;  
-    margin-bottom: 10px;
-    font-size: 14px; 
-    max-width: 80%;  
-    word-wrap: break-word;  
-    display: inline-block; 
-  }
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 12px;
+    margin: 5px;
+}
+
+.message.user {
+  background-color: #18a3eb; 
+  color: white;
+  align-self: flex-end;
+}
   
-  .message.sent {
-    background-color: #0084ff; 
+.message.bot {
+  background-color: #f3f3f3;
+  color: black;
+  align-self: flex-start;
+}
+
+  .header {
+    display: flex;
+    align-items: center;
+    background-color: #18a3eb;
     color: white;
-    margin-left: auto;  
+    padding: 10px;
+    justify-content: space-between;
   }
   
-  .message.received {
-    background-color: #f5f6f7; 
-    color: black;
-    margin-right: auto; 
-  }
-  
-  input[type="text"] {
-    width: 73%;   
-    margin-bottom: 10px ;
-    padding: 10px;  
-    font-size: 14px;  
-    border: none;
-    border-radius: 20px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    outline: none;
-  }
-  
-  button {
-    background-color: #0084ff;  
-    color: white;
-    border: none;
-    border-radius: 20px; 
-    padding: 10px 20px;  
+  .close-icon {
     cursor: pointer;
-    font-size: 14px; 
-    box-shadow:
+    margin-left: auto;
+    color: white;
   }
+  
+  .chat-input-section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: #f5f5f5;
+  }
+  
+  .chat-input {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .chat-messages {
+    overflow-y: scroll;
+    max-height: calc(500px - 90px);  /* Adjusting for header and input space */
+    margin-bottom: 10px;
+  }
+  
   `]
 })
 export class ChatComponent {
   chatOpen = false;
-  messages: string[] = [];
+  messages: { sender: string, content: string }[] = [
+    { sender: 'Bot', content: "Here are some things you can ask about:" },
+    { sender: 'Bot', content: "- Tell me about headaches." },
+    { sender: 'Bot', content: "- I have a fever." },
+    { sender: 'Bot', content: "- Pain management tips." }
+  ];
   currentMessage = '';
 
+  constructor(private chatService: ChatService) {}
+
   openChat() {
-    this.chatOpen = !this.chatOpen
+    this.chatOpen = !this.chatOpen;
   }
-
-  closeChat() {
-    this.chatOpen = false;
-  }
-
   sendMessage() {
-    if (this.currentMessage) {
-      this.messages.push(this.currentMessage);
+    if (this.currentMessage.trim()) {
+      this.messages.push({ sender: 'User', content: this.currentMessage });
+      
+      setTimeout(() => {
+        const recommendation = this.getRecommendation(this.currentMessage);
+        this.messages.push({ sender: 'Bot', content: recommendation });
+      }, 2000);  
+      
       this.currentMessage = '';
     }
   }
+  
+  getRecommendation(message: string): string {
+    const lowerMsg = message.toLowerCase();
+
+    if (lowerMsg.includes("headache")) {
+      return "Have you taken any pain relievers?";
+    } 
+    if (lowerMsg.includes("fever")) {
+      return "Are you experiencing any chills or sweats?";
+    }
+    if (lowerMsg.includes("pain")) {
+      return "On a scale of 1-10, how would you rate the pain?";
+    }
+     
+    return "Can you provide more details?";
+  }
+  
+  isRecommendation(message: { sender: string, content: string }): boolean {
+    return message.sender === 'Bot';
+  }
+  
 }

@@ -5,6 +5,7 @@ import { ContactPageRoutingModule } from './contact-page-routing.module';
 import { ContactPageComponent } from './contact-page.component';
 import { TopHeaderComponent } from '../../ui/top-header/top-header.component';
 import { UiModule } from '../../ui/ui.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { UiModule } from '../../ui/ui.module';
   imports: [
     CommonModule,
     ContactPageRoutingModule,
+    ReactiveFormsModule,
     UiModule
   ]
 })

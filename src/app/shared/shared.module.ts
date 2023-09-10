@@ -14,6 +14,7 @@ import { ClientHeaderComponent } from './components/client/client-header/client-
 import { ClientFooterComponent } from './components/client/client-footer/client-footer.component';
 import { ClientNavComponent } from './components/client/client-nav/client-nav.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './MaterialModule';
  
     
 @NgModule({
@@ -29,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatListModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MaterialModule,
     MatSidenavModule
    ],
   exports:[ HeaderComponent,FooterComponent,ChatComponent, ClientHeaderComponent, ClientFooterComponent, ClientNavComponent,      ]

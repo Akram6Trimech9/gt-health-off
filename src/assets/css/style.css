@@ -347,62 +347,7 @@ a:hover, a:active {
 }
 
 /*
-# Accordion
-----------------------------------*/
-.accordion-wrap {
-    position: relative;
-}
 
-.accordion-wrap .entry-content {
-    margin: 0;
-}
-
-.accordion-wrap .entry-title {
-    padding: 12px 38px;
-    margin-bottom: 15px;
-    background: #f3f3f3;
-    font-size: 16px;
-    font-weight: 600;
-    color: #404040;
-    cursor: pointer;
-}
-
-.accordion-wrap .entry-title {
-    border: 0;
-    background: -moz-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* ff3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(50,200,250,1)), color-stop(100%, rgba(188,125,228,1))); /* safari4+,chrome */
-    background: -webkit-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* safari5.1+,chrome10+ */
-    background: -o-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* opera 11.10+ */
-    background: -ms-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* ie10+ */
-    background: linear-gradient(270deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* w3c */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#18a3eb', endColorstr='#18a3eb',GradientType=1 ); /* ie6-9 */
-    color: #fff;
-}
-
-.accordion-wrap .entry-title .arrow-r::before,
-.accordion-wrap .entry-title .arrow-d::before {
-    content: "+";
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.accordion-wrap .entry-title .arrow-d::before {
-    content: "-";
-}
-
-/*
-# Content
-----------------------------------*/
-.accordion-wrap .entry-content {
-    display: none;
-}
-
-.accordion-wrap .entry-content p {
-    padding: 10px 0;
-    font-size: 14px;
-    line-height: 2;
-    color: #828282;
-}
 
 /*
 # Tabs
