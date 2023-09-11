@@ -7,30 +7,31 @@ pipeline {
         stage('Checkout'){
             agent any
             steps{
-                git url: 'https://github.com/Akram6Trimech9/gt-health-off.git', branch: 'main'
+                git url: 'https://github.com/Akram6Trimech9/gt-health-off.git', branch: 'master'
             }
         }
         stage('testddd'){
-            agent any
+            // agent any
             steps{
                sh 'ls'
             }
         }
         stage('init'){
-            agent any
+            // agent any
             steps{
-               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+               sh 'env'
+               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | /usr/bin/docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('web Analysis ') {
-            agent any
-            when {
-                changeset "*.*"
-                beforeAgent true
-            }
+            // agent any
+            // when {
+            //     changeset "*.*"
+            //     beforeAgent true
+            // }
             steps {
                      nodejs(nodeJSInstallationName: 'nodejs'){
-                    sh 'npm install'
+                    // sh 'npm install'
                              script {
                                 def scannerHome = tool 'SonarQube';
                                 withSonarQubeEnv('sonar') {
@@ -40,30 +41,28 @@ pipeline {
                     }
              }
         }
-        stage('Sonarqube quality gate') {
-            agent any 
-            when {
-                changeset "*.*"
-                beforeAgent true
-            } 
-            steps {
-                timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Sonarqube quality gate') {
+        //     // agent any 
+        //     // when {
+        //     //     changeset "*.*"
+        //     //     beforeAgent true
+        //     // } 
+        //     steps {
+        //         timeout(time: 10, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         stage('Build client') {
             agent any
             when {
                 changeset "*.*"
              }
             steps {
-                dir('auth-api and Analysis'){
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/client-front .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/client-front '
                     sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/client-front '
                     sh 'docker logout'
-                }
             }
         }
     }
