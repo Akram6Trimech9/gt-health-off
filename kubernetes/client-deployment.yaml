@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: angularclient
+   labels:
+     app: client
+spec: 
+   selector: 
+      matchLabels: 
+         app: client
+   replicas: 2 
+   template: 
+     metadata: 
+        labels:
+           app: client 
+     spec: 
+       containers: 
+       - name: client
+         image: akram6trimech9/client-front:1
+         imagePullPolicy: Always
+         ports: 
+           - containerPort: 80       
