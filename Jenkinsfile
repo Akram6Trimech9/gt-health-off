@@ -72,6 +72,7 @@ pipeline {
             steps {
                 script {
                     sh 'helm lint helmclient/'
+                    sh 'helm uninstall helmclient'
                     // sh 'helm uninstall helmclient'
                     sh 'helm upgrade --install helmclient helmclient/'
                 } 
