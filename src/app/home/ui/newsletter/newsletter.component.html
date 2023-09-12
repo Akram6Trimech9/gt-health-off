@@ -3,9 +3,11 @@
       <div class="row">
         <div *ngIf="!subscribed"  class="col-12 col-lg-8 offset-lg-2">
           <h2>Subscribe to our newsletter</h2>
-          <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="emailForm" >
+            <!-- replace('http://localhost:3000/api','http://gthealth.local.com/api'); -->
             <input type="email" formControlName="email" placeholder="E-mail address">
-            <input class="button gradient-bg" type="submit" value="Subscribe">
+            <!-- <button class="button gradient-bg" type="submit" value="Subscribe">Subbscribe</button> -->
+            <button class="button gradient-bg" (click)="onSubmit()" type="submit">Subscribe</button>
           </form>
        
         </div>

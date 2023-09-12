@@ -23,24 +23,24 @@ pipeline {
                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | /usr/bin/docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage('web Analysis ') {
-            // agent any
-            when {
-                changeset "*.*"
-                beforeAgent true
-            }
-            steps {
-                     nodejs(nodeJSInstallationName: 'nodejs'){
-                    // sh 'npm install'
-                             script {
-                                def scannerHome = tool 'SonarQube';
-                                withSonarQubeEnv('sonar') {
-                                sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=app -Dsonar.projectName=app"
-                                }
-                             }
-                    }
-             }
-        }
+        // stage('web Analysis ') {
+        //     // agent any
+        //     when {
+        //         changeset "*.*"
+        //         beforeAgent true
+        //     }
+        //     steps {
+        //              nodejs(nodeJSInstallationName: 'nodejs'){
+        //             // sh 'npm install'
+        //                      script {
+        //                         def scannerHome = tool 'SonarQube';
+        //                         withSonarQubeEnv('sonar') {
+        //                         sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=app -Dsonar.projectName=app"
+        //                         }
+        //                      }
+        //             }
+        //      }
+        // }
         // stage('Sonarqube quality gate') {
         //     // agent any 
         //     // when {
@@ -71,7 +71,8 @@ pipeline {
             }  
             steps {
                 script {
-                    sh 'helm lint gthealth-chart/'
+                    sh 'helm lint helmclient/'
+                    // sh 'helm uninstall helmclient'
                     sh 'helm upgrade --install helmclient helmclient/'
                 } 
             }

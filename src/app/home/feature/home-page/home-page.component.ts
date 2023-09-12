@@ -77,7 +77,9 @@ export class HomePageComponent implements OnInit {
         if (res && res.length > 0) {
              this.blogs = res.slice(0, 3);
         }
-         
+        this.blogs.forEach((element: any) => {
+          element.image.path = element.image.path.replace('http://localhost:3000/api','http://gthealth.local.com/api');
+       });
       },
       error: (err) => {
         console.log(err);

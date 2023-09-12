@@ -10,12 +10,17 @@ export class BlogPageComponent implements OnInit {
   constructor(private  _accService : AccPageService){
 
   }
-   articles : any[] =[]
-  ngOnInit(): void { 
-       this._accService.getPosts().subscribe(res => { 
-          this.articles =res
-          console.log(this.articles);
-          
-       })
-  }
+   articles : any
+   ngOnInit(): void { 
+    this._accService.getPosts().subscribe(res => { 
+       this.articles = res;
+       this.articles.forEach((element: any) => {
+          element.image.path = element.image.path.replace('http://localhost:3000/api','http://gthealth.local.com/api');
+       });
+       console.log(this.articles); 
+    })
+ }
+ 
 }
+
+ 
