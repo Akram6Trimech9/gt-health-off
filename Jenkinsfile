@@ -25,10 +25,10 @@ pipeline {
         }
         stage('web Analysis ') {
             // agent any
-            // when {
-            //     changeset "*.*"
-            //     beforeAgent true
-            // }
+            when {
+                changeset "*.*"
+                beforeAgent true
+            }
             steps {
                      nodejs(nodeJSInstallationName: 'nodejs'){
                     // sh 'npm install'
@@ -54,16 +54,23 @@ pipeline {
         //     }
         // }
         stage('Build client') {
-            agent any
+            // agent any
             when {
                 changeset "*.*"
              }
             steps {
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/client-front .'
-                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/client-front '
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/client-front '
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/client-front:1 .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/client-front:1 '
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/client-front:1 '
                     sh 'docker logout'
             }
+        }
+        stage('Deploy using helm '){
+            when {
+                changeset "*.*"
+             }  
+            helm lint gthealth-chart/
+            helm upgrade --install helmclient  helmclient/
         }
     }
 }
