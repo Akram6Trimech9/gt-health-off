@@ -57,7 +57,7 @@ pipeline {
             // agent any
             when {
                 changeset "*.*"
-             }
+            }
             steps {
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/client-front:1 .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/client-front:1 '
@@ -68,9 +68,14 @@ pipeline {
         stage('Deploy using helm '){
             when {
                 changeset "*.*"
-             }  
-            helm lint gthealth-chart/
-            helm upgrade --install helmclient  helmclient/
+            }  
+            steps {
+                script {
+                    sh 'helm lint gthealth-chart/'
+                    sh 'helm upgrade --install helmclient helmclient/'
+                } 
+            }
         }
+
     }
 }
