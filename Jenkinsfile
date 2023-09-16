@@ -11,50 +11,34 @@ pipeline {
             }
         }
         stage('testddd'){
-            // agent any
             steps{
                sh 'ls'
             }
         }
         stage('init'){
-            // agent any
             steps{
                sh 'env'
                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | /usr/bin/docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        // stage('web Analysis ') {
-        //     // agent any
-        //     when {
-        //         changeset "*.*"
-        //         beforeAgent true
-        //     }
-        //     steps {
-        //              nodejs(nodeJSInstallationName: 'nodejs'){
-        //             // sh 'npm install'
-        //                      script {
-        //                         def scannerHome = tool 'SonarQube';
-        //                         withSonarQubeEnv('sonar') {
-        //                         sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=app -Dsonar.projectName=app"
-        //                         }
-        //                      }
-        //             }
-        //      }
-        // }
-        // stage('Sonarqube quality gate') {
-        //     // agent any 
-        //     // when {
-        //     //     changeset "*.*"
-        //     //     beforeAgent true
-        //     // } 
-        //     steps {
-        //         timeout(time: 10, unit: 'MINUTES') {
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
+        stage('web Analysis ') {
+            when {
+                changeset "*.*"
+                beforeAgent true
+            }
+            steps {
+                     nodejs(nodeJSInstallationName: 'nodejs'){
+                    // sh 'npm install'
+                             script {
+                                def scannerHome = tool 'SonarQube';
+                                withSonarQubeEnv('sonar') {
+                                sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=app -Dsonar.projectName=app"
+                                }
+                             }
+                    }
+             }
+        }
         stage('Build client') {
-            // agent any
             when {
                 changeset "*.*"
             }
