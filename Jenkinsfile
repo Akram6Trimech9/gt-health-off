@@ -10,11 +10,6 @@ pipeline {
                 git url: 'https://github.com/Akram6Trimech9/gt-health-off.git', branch: 'master'
             }
         }
-        stage('testddd'){
-            steps{
-               sh 'ls'
-            }
-        }
         stage('init'){
             steps{
                sh 'env'
